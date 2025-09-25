@@ -2,26 +2,46 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>あなたのＨＰタイトル</title>
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="description" content="ページの説明">
+<title>本の探索</title>
+<meta name="keywords" content="本, 探索, 探し, 店舗, 書籍">
+<meta name="description" content="店舗内の本の場所を案内します。">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="index.css">
 </head>
 <body>
 <div id="outer">
-<header><div id="header-container"><div id="head-inner"><h1>あなたのＨＰタイトル</h1>
-<p class="description">あなたのＨＰの説明文</p></div></div>
+<header><div id="header-container"><div id="head-inner"><h1>本の探索</h1>
+<p class="description">店舗内の本の場所を案内します。</p></div></div>
 </header>
 <div id="content-wrapper">
 <main>
 <div id="inner">
-<h2>記事ページ見出し・大</h2>
-<p>文章あれこれ</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
+  <div id="password-screen" class="active">
+    <h2>アクセスするにはパスワードを入力してください。</h2>
+    <p>
+      <input type="password" id="password-input" placeholder="パスワード">
+      <br>
+      <button id="password-submit">決定</button>
+    </p>
+  </div>
+
+  <div id="home-screen">
+    <h2>いらっしゃいませ！</h2>
+    <p>お探しの本はどのような本ですか？</p>
+  </div>
+
+  <div id="genre-screen">
+    <h2>本の種類を選択してください</h2>
+    <p>
+      <button class="genre-button">少年コミック</button>
+      <button class="genre-button">大人コミック</button>
+      <button class="genre-button">少女コミック</button>
+      <button class="genre-button">絵本</button>
+      <button class="genre-button">単行本</button>
+      <button class="genre-button">文庫本</button>
+      <button class="genre-button">写真集</button>
+    </p>
+  </div>
 </div>
 </main>
 <aside>
@@ -29,13 +49,38 @@
 <div class="side-title">menu</div>
 <div class="side">
 <ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
+<li><a href="#">記事ページへのリンク</a></li>
+<li><a href="#">記事ページへのリンク</a></li>
 </ul>
 </div>
 </div>
 </aside>
 </div>
-<footer>© 2010 あなたのホームページ</footer>
-</div></body>
+<footer>© 2024 本の探索</footer>
+</div>
+<script>
+  const correctPassword = "book123"; // ここに正しいパスワードを設定してください
+
+  const passwordScreen = document.getElementById('password-screen');
+  const homeScreen = document.getElementById('home-screen');
+  const genreScreen = document.getElementById('genre-screen');
+  const passwordInput = document.getElementById('password-input');
+  const passwordSubmitButton = document.getElementById('password-submit');
+
+  passwordSubmitButton.addEventListener('click', () => {
+    if (passwordInput.value === correctPassword) {
+      passwordScreen.classList.remove('active');
+      homeScreen.classList.add('active');
+    } else {
+      alert("パスワードが違います。");
+      passwordInput.value = '';
+    }
+  });
+
+  homeScreen.addEventListener('click', () => {
+    homeScreen.classList.remove('active');
+    genreScreen.classList.add('active');
+  });
+</script>
+</body>
 </html>
