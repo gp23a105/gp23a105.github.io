@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本の探索</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 0;
+    }
+    
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+    
+    #password-screen, #home-screen, #genre-screen {
+      display: none;
+    }
+    
+    #password-screen.active, #home-screen.active, #genre-screen.active {
+      display: block;
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    
+    input[type="password"] {
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    .genre-button {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .instruction {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="password-screen" class="active">
+      <h1>ようこそ</h1>
+      <p>アクセスするにはパスワードを入力してください。</p>
+      <input type="password" id="password-input" placeholder="パスワード">
+      <br>
+      <button id="password-submit">決定</button>
+    </div>
+
+    <div id="home-screen">
+      <h1>いらっしゃいませ！</h1>
+      <p class="instruction">お探しの本はどのような本ですか？</p>
+    </div>
+    
+    <div id="genre-screen">
+      <h1>本の種類を選択してください</h1>
+      <button class="genre-button">少年コミック</button>
+      <button class="genre-button">大人コミック</button>
+      <button class="genre-button">少女コミック</button>
+      <button class="genre-button">絵本</button>
+      <button class="genre-button">単行本</button>
+      <button class="genre-button">文庫本</button>
+      <button class="genre-button">写真集</button>
+    </div>
+  </div>
+
+  <script>
+    const correctPassword = "password123"; // ここに正しいパスワードを設定してください
+
+    const passwordScreen = document.getElementById('password-screen');
+    const homeScreen = document.getElementById('home-screen');
+    const genreScreen = document.getElementById('genre-screen');
+
+    const passwordInput = document.getElementById('password-input');
+    const passwordSubmitButton = document.getElementById('password-submit');
+
+    // パスワード入力ボタンのクリックイベント
+    passwordSubmitButton.addEventListener('click', () => {
+      if (passwordInput.value === correctPassword) {
+        passwordScreen.classList.remove('active');
+        homeScreen.classList.add('active');
+      } else {
+        alert("パスワードが違います。");
+      }
+    });
+
+    // ホーム画面のタップ（クリック）イベント
+    homeScreen.addEventListener('click', () => {
+      homeScreen.classList.remove('active');
+      genreScreen.classList.add('active');
+    });
+
+  </script>
+
+</body>
+</html>
